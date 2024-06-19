@@ -8,6 +8,10 @@ using NerdStore.Vendas.Application.Commands;
 using NerdStore.Core.Communication.Mediator;
 using NerdStore.Core.Messages.CommonMessages.Notifications;
 using NerdStore.Vendas.Application.Events;
+using NerdStore.Vendas.Application.Queries;
+using NerdStore.Vendas.Domain;
+using NerdStore.Vendas.Data.Repository;
+using NerdStore.Vendas.Data;
 
 namespace NerdStore.WebApp.MVC.Setup
 {
@@ -25,6 +29,11 @@ namespace NerdStore.WebApp.MVC.Setup
             services.AddScoped<CatalogoContext>();
 
             services.AddScoped<INotificationHandler<ProdutoAbaixoEstoqueEvent>, ProdutoEventHandler>();
+
+
+            services.AddScoped<IPedidoRepository, PedidoRepository>();
+            services.AddScoped<IPedidoQueries, PedidoQueries>();
+            services.AddScoped<VendasContext>();
 
             services.AddScoped<IRequestHandler<AdicionarItemPedidoCommand, bool>, PedidoCommandHandler>();
 
